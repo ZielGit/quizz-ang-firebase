@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QuizzService } from 'src/app/services/quizz.service';
 
@@ -9,10 +9,10 @@ import { QuizzService } from 'src/app/services/quizz.service';
   styleUrls: ['./crear-quizz.component.css']
 })
 export class CrearQuizzComponent implements OnInit {
-  cuestionarioForm: FormGroup;
+  cuestionarioForm: UntypedFormGroup;
   mostrarError = false;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private router: Router,
               private _quizzService: QuizzService) { 
     this.cuestionarioForm = this.fb.group({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from 'src/app/services/error.service';
@@ -11,10 +11,10 @@ import { ErrorService } from 'src/app/services/error.service';
   styleUrls: ['./recuperar-password.component.css']
 })
 export class RecuperarPasswordComponent implements OnInit {
-  recuperarForm: FormGroup;
+  recuperarForm: UntypedFormGroup;
   loading = false;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private afAuth: AngularFireAuth,
               private router: Router,
               private toastr: ToastrService,

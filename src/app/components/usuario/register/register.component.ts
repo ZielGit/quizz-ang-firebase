@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,10 +11,10 @@ import { ErrorService } from 'src/app/services/error.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   loading = false;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     private afAuth: AngularFireAuth,
     private router: Router,
     private toastr: ToastrService,
@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
     }
   } */
 
-  checkPassword(group: FormGroup): any {
+  checkPassword(group: UntypedFormGroup): any {
     const pass = group.controls.password?.value;
     const confirmPassword = group.controls.repetirPassword?.value;
     return pass === confirmPassword ? null : { notSame: true }
