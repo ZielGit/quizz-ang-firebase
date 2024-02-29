@@ -43,33 +43,32 @@ export class ListCuestionariosComponent implements OnInit, OnDestroy {
   }
 
   getCuestionarios(uid: string) {
-    
-   this.suscriptionQuizz == this._quizzService.getCuestionarioByIdUser(uid).subscribe(data => {
-      this.listCuestionarios = [];
-      this.loading = false;
-      data.forEach((element:any) => {
-        this.listCuestionarios.push({
-          id: element.payload.doc.id,
-          ...element.payload.doc.data()
-        })
-      });
-     
-    }, error => {
-      console.log(error);
-      this.toastr.error('Opss.. ocurrio un error', 'Error');
-      this.loading = false;
-    })
-  }
+    this.suscriptionQuizz = this._quizzService.getCuestionarioByIdUser(uid).subscribe({
+      next: data => {
+        this.listCuestionarios = data.map((element: any) => ({
+          id: element.id,
+          ...(element as Cuestionario)  // Asumimos que element ya es un Cuestionario
+        }));
+        this.loading = false;
+        console.log('data', this.listCuestionarios);
+      },
+      error: error => {
+        console.log(error);
+        this.toastr.error('Oops... ocurrió un error', 'Error');
+        this.loading = false;
+      }
+    });
+}
 
-  eliminarCuestionario(id: string) {
-    this.loading = true;
-    this._quizzService.eliminarCuestionario(id).then(data => {
-      this.toastr.error('El Cuestionario fue eliminado con exito', 'Registro eliminado!');
-      this.loading = false;
-    }).catch(() =>{
-      this.loading = false;
-      this.toastr.error('Opss.. ocurrio un error', 'Error');
-    })
-  }
+  // eliminarCuestionario(id: string) {
+  //   this.loading = true;
+  //   this._quizzService.eliminarCuestionario(id).then(data => {
+  //     this.toastr.error('El Cuestionario fue eliminado con exito', 'Registro eliminado!');
+  //     this.loading = false;
+  //   }).catch(() =>{
+  //     this.loading = false;
+  //     this.toastr.error('Opss.. ocurrio un error', 'Error');
+  //   })
+  // }
 
 }
