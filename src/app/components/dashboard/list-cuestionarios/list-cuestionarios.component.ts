@@ -58,17 +58,16 @@ export class ListCuestionariosComponent implements OnInit, OnDestroy {
         this.loading = false;
       }
     });
-}
+  }
 
-  // eliminarCuestionario(id: string) {
-  //   this.loading = true;
-  //   this._quizzService.eliminarCuestionario(id).then(data => {
-  //     this.toastr.error('El Cuestionario fue eliminado con exito', 'Registro eliminado!');
-  //     this.loading = false;
-  //   }).catch(() =>{
-  //     this.loading = false;
-  //     this.toastr.error('Opss.. ocurrio un error', 'Error');
-  //   })
-  // }
-
+  eliminarCuestionario(id: string) {
+    this.loading = true;
+    this._quizzService.eliminarCuestionario(id).then(data => {
+      this.toastr.error('El Cuestionario fue eliminado con éxito', 'Registro eliminado!');
+      this.loading = false;
+    }).catch(() => {
+      this.loading = false;
+      this.toastr.error('Oops... ocurrió un error', 'Error');
+    });
+  }
 }

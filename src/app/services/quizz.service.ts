@@ -47,8 +47,8 @@ export class QuizzService {
   //  return this._firestore.collection('cuestionarios').doc(idCuestionario).delete()
   // }
 
-  eliminarCuestionario(cuestionario: Cuestionario) {
-    const cuestionarioDocRef = doc(this.firestore, `cuestionarios/${cuestionario.id}`);
+  eliminarCuestionario(id: string) {
+    const cuestionarioDocRef = doc(this.firestore, `cuestionarios/${id}`);
     return deleteDoc(cuestionarioDocRef);
   }
 
